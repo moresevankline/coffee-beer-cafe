@@ -73,7 +73,7 @@ router.get("/get/orders", jwtAuthorize, async (req, res) => {
   }
 });
 
-router.get("/get/orders/:store_id", async (req, res) => {
+router.get("/get/orders/:store_id", jwtAuthorize, async (req, res) => {
   try {
     const { store_id } = req.params;
     const query = `
@@ -126,7 +126,7 @@ router.get("/get/specific-orders", jwtAuthorize, async (req, res) => {
   }
 });
 
-router.get("/get/top-sold-products", async (req, res) => {
+router.get("/get/top-sold-products", jwtAuthorize, async (req, res) => {
   try {
     // SQL query to find the top 5 most sold products based on total quantity
     const query = `
@@ -199,7 +199,7 @@ router.get("/get/top-sold-products", async (req, res) => {
 // });
 
 router.get(
-  "/get/top-sold-products-no-limit/:year/:store_id",
+  "/get/top-sold-products-no-limit/:year/:store_id", jwtAuthorize,
   async (req, res) => {
     try {
       // Extract the 'year' and 'store_id' parameters from the URL
@@ -356,7 +356,7 @@ router.get("/get/order-list/:order_id", jwtAuthorize, async (req, res) => {
   }
 });
 
-router.get("/get/annual-orders/:store_id", async (req, res) => {
+router.get("/get/annual-orders/:store_id", jwtAuthorize, async (req, res) => {
   try {
     const query = `SELECT
     EXTRACT(YEAR FROM order_date) AS sales_year,

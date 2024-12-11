@@ -24,7 +24,7 @@ router.get("/get/products", jwtAuthorize, async (req, res) => {
   }
 });
 
-router.get("/get/products/manager/:store_id", async (req, res) => {
+router.get("/get/products/manager/:store_id", jwtAuthorize, async (req, res) => {
   try {
     const { store_id } = req.params;
     const query = `
@@ -37,7 +37,7 @@ router.get("/get/products/manager/:store_id", async (req, res) => {
   }
 });
 
-router.get("/get/products-by-type/:type", async (req, res) => {
+router.get("/get/products-by-type/:type", jwtAuthorize, async (req, res) => {
   try {
     const { type } = req.params;
     const query = `SELECT * FROM products INNER JOIN categories on categories.category_id = products.category_id where products.product_type = $1`;
@@ -48,7 +48,7 @@ router.get("/get/products-by-type/:type", async (req, res) => {
   }
 });
 
-router.get("/get/products/total-sales", async (req, res) => {
+router.get("/get/products/total-sales", jwtAuthorize, async (req, res) => {
   try {
     const totalSales = await pool.query(
       "SELECT SUM(subtotal) FROM owner_data WHERE order_date >= '2024-01-01' AND order_date <= '2024-12-31'"
@@ -70,7 +70,7 @@ router.get("/get/categories", jwtAuthorize, async (req, res) => {
 });
 
 // Manager Categories
-router.get("/get/categories/:store_id", async (req, res) => {
+router.get("/get/categories/:store_id", jwtAuthorize, async (req, res) => {
   try {
     const { store_id } = req.params;
     const query = `SELECT * FROM categories WHERE store_id = $1`;
@@ -84,6 +84,7 @@ router.get("/get/categories/:store_id", async (req, res) => {
 router.post(
   "/add/category/manager",
   upload.single("categoryImage"),
+  jwtAuthorize,
   async (req, res) => {
     try {
       const { categoryName, store_id } = req.body;
@@ -119,7 +120,7 @@ router.post(
   }
 );
 
-router.get("/get/store_name", async (req, res) => {
+router.get("/get/store_name", jwtAuthorize, async (req, res) => {
   try {
     const query = `SELECT * FROM store_location`;
     const store_name = await pool.query(query);

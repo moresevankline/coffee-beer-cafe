@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require("../database/coffeeshop.db");
 const jwtAuthorize = require("../middleware/jwt.validator");
 
-router.get("/get/owner/monthly-sales", async (req, res) => {
+router.get("/get/owner/monthly-sales", jwtAuthorize, async (req, res) => {
   try {
     const monthlySales = await pool.query(
       `
@@ -19,7 +19,7 @@ router.get("/get/owner/monthly-sales", async (req, res) => {
   }
 });
 
-router.get("/get/owner/store-sales", async (req, res) => {
+router.get("/get/owner/store-sales", jwtAuthorize, async (req, res) => {
   try {
     const storeSales = await pool.query(
       `
@@ -35,7 +35,7 @@ router.get("/get/owner/store-sales", async (req, res) => {
   }
 });
 
-router.get("/get/owner/average-order-sales", async (req, res) => {
+router.get("/get/owner/average-order-sales", jwtAuthorize, async (req, res) => {
   try {
     const averageOrderSales = await pool.query(
       `
@@ -49,7 +49,7 @@ router.get("/get/owner/average-order-sales", async (req, res) => {
   }
 });
 
-router.get("/get/owner/top-5-products-with-most-sales", async (req, res) => {
+router.get("/get/owner/top-5-products-with-most-sales", jwtAuthorize, async (req, res) => {
   try {
     const top5MostSalesProducts = await pool.query(
       `
@@ -66,7 +66,7 @@ router.get("/get/owner/top-5-products-with-most-sales", async (req, res) => {
   }
 });
 
-router.get("/get/owner/top-5-products-with-least-sales", async (req, res) => {
+router.get("/get/owner/top-5-products-with-least-sales", jwtAuthorize, async (req, res) => {
   try {
     const top5LeastSalesProducts = await pool.query(
       `

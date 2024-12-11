@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const pool = require("../database/coffeeshop.db");
 const jwtAuthorize = require("../middleware/jwt.validator");
 
-router.get("/get/store-locations", async (req, res) => {
+router.get("/get/store-locations", jwtAuthorize, async (req, res) => {
     try {
         const query = `SELECT * from store_location`;
 
