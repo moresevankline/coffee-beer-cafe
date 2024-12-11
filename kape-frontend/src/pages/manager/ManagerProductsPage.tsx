@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import DataTable from "../../components/DataTable";
 import Sidebar from "../../components/Sidebar";
 import { createColumnHelper } from "@tanstack/react-table";
-import { getCategories } from "../../services/products.service";
 import { useNavigate } from "react-router-dom";
 import AddProductModal from "../../components/AddProductModal";
 import UpdateProductModal from "../../components/UpdateProductModal";

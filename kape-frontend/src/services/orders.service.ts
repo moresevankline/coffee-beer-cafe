@@ -3,7 +3,7 @@ const SERVER_URI = "https://coffee-beer-cafe.onrender.com/api";
 // Function to retrieve the token from local storage
 const getToken = () => localStorage.getItem("token"); // Adjust based on your token storage method
 
-export const getPreviousMonthOrders = async (storeId: string) => {
+export const getPreviousMonthOrders = async () => {
   const token = getToken(); // Assuming you have a function to get JWT token
 
   try {
@@ -21,17 +21,12 @@ export const getPreviousMonthOrders = async (storeId: string) => {
     }
 
     // Format the previous month and year
-    const previousMonthFormatted = previousMonth + 1; // SQL months are 1-based (1 = January, 12 = December)
 
     console.log(
       "Previous month: ${previousMonthFormatted}, Year: ${previousYear}"
     );
 
     // Construct query parameters
-    const queryParams = new URLSearchParams({
-      year: previousYear.toString(),
-      store_id: storeId, // Pass the storeId as part of the query
-    }).toString();
 
     // Send the GET request to fetch data for the previous month
     const response = await fetch(

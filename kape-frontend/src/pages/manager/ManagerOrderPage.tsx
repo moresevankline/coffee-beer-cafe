@@ -4,7 +4,6 @@ import AddOrdersModal from "../../components/AddOrdersModal";
 
 import { useNavigate } from "react-router-dom";
 import { createColumnHelper } from "@tanstack/react-table";
-import { getOrders } from "../../services/orders.service";
 import DataTable from "../../components/DataTable";
 import ViewOrderListModal from "../../components/ViewOrderListModal";
 import { getOrdersManager } from "../../services/manager.service";

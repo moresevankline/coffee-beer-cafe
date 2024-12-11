@@ -4,7 +4,6 @@ import Sidebar from "../../components/Sidebar";
 import { createColumnHelper } from "@tanstack/react-table";
 import { deleteManager, getManagers } from "../../services/users.service";
 import { useNavigate } from "react-router-dom";
-import { formatDate } from "../../utils/date.formatter";
 import AddManagerModal from "../../components/AddManagerModal";
 import UpdateManagerModal from "../../components/UpdateManager";
 import Swal from "sweetalert2";

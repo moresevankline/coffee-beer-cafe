@@ -2,17 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import {
-  getAverageSales2024,
   getAverageSales2024Manager,
-  getMonthlySales2024,
   getMonthlySales2024Manager,
-  getStoreSales2024,
   getStoreSales2024Manager,
-  getTop5LeastSaleProducts,
   getTop5LeastSaleProductsManager,
-  getTop5MostSaleProducts,
   getTop5MostSaleProductsManager,
-  getTotalSales2024,
   getTotalSales2024Manager,
 } from "../../services/orders.service";
 import Recommendation from "../../components/Recommendation";

@@ -6,8 +6,6 @@ import {
     getCategories,
 } from "../../services/products.service"; // Ensure deleteCategory is imported
 import { useNavigate } from "react-router-dom";
-import AddCategoryModal from "../../components/AddCategoryModal";
-import UpdateCategoryModal from "../../components/UpdateCategoryModal";
 
 const columnHelper = createColumnHelper();
 

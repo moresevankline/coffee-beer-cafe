@@ -16,7 +16,6 @@ const OwnerProductsPage = () => {
     const [categories, setCategories] = useState([]);
     const [reload, setReload] = useState(false);
     const [selectedCategory, setSelectedCategory] = useState("all");
-    const localRole = localStorage.getItem("role");
 
     const columns = [
         columnHelper.accessor("product_image", {
