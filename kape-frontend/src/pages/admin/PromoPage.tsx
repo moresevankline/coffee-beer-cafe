@@ -26,7 +26,9 @@ const PromoPage = () => {
   useEffect(() => {
     const fetchPromoBanners = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/get-promos");
+        const response = await fetch(
+          "https://coffee-beer-cafe.onrender.com/api/get-promos"
+        );
         if (!response.ok) throw new Error("Failed to fetch promo banners");
         const data: PromoBanner[] = await response.json();
         setPromoBanners(data);
@@ -135,7 +137,7 @@ const PromoPage = () => {
         try {
           // Send DELETE request to the API to delete the promo
           const response = await fetch(
-            `http://localhost:5000/api/delete-promo/${id}`,
+            `https://coffee-beer-cafe.onrender.com/api/delete-promo/${id}`,
             {
               method: "DELETE",
               headers: {

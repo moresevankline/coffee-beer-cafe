@@ -58,14 +58,17 @@ const AddPromoModal = ({
 
       try {
         // Make a POST request to the backend to upload the promo
-        const response = await fetch("http://localhost:5000/api/upload-promo", {
-          method: "POST",
-          headers: {
-            jwt_token: localStorage.getItem("token") || "", // Token for authentication
-          },
+        const response = await fetch(
+          "https://coffee-beer-cafe.onrender.com/api/upload-promo",
+          {
+            method: "POST",
+            headers: {
+              jwt_token: localStorage.getItem("token") || "", // Token for authentication
+            },
 
-          body: formData, // FormData will automatically handle Content-Type
-        });
+            body: formData, // FormData will automatically handle Content-Type
+          }
+        );
 
         if (response.ok) {
           console.log("Promotion uploaded successfully:", response);

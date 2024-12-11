@@ -1,4 +1,4 @@
-const SERVER_URI = "http://localhost:5000/api";
+const SERVER_URI = "https://coffee-beer-cafe.onrender.com/api";
 
 // Function to retrieve the token from local storage
 const getToken = () => localStorage.getItem("token"); // Adjust based on your token storage method

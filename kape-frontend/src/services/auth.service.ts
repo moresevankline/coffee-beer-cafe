@@ -1,4 +1,4 @@
-const SERVER_URI: string = "http://localhost:5000/api";
+const SERVER_URI: string = "https://coffee-beer-cafe.onrender.com/api";
 const getToken = () => localStorage.getItem("token"); // Adjust based on your token storage method
 
 export const addUser = async (email: string, password: string) => {

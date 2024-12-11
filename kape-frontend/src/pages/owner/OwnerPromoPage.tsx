@@ -19,7 +19,9 @@ const OwnerPromoPage = () => {
   useEffect(() => {
     const fetchPromoBanners = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/get-promos");
+        const response = await fetch(
+          "https://coffee-beer-cafe.onrender.com/api/get-promos"
+        );
         if (!response.ok) throw new Error("Failed to fetch promo banners");
         const data: PromoBanner[] = await response.json();
         setPromoBanners(data);

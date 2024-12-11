@@ -32,7 +32,7 @@ const AnnualSalesChart: React.FC<{ storeId: string }> = ({ storeId }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/get/annual-orders/${storeId}`
+          `https://coffee-beer-cafe.onrender.com/api/get/annual-orders/${storeId}`
         );
 
         const data = await response.json();

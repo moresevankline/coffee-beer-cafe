@@ -71,7 +71,7 @@ const UpdatePromoModal: React.FC<UpdatePromoModalProps> = ({
   //             }
 
   //             const response = await fetch(
-  //                 `http://localhost:5000/api/update-promo/${promoDetails.promo_id}`,
+  //                 `https://coffee-beer-cafe.onrender.com/api/update-promo/${promoDetails.promo_id}`,
   //                 {
   //                     method: "PATCH",
   //                     body: formData,
@@ -105,7 +105,7 @@ const UpdatePromoModal: React.FC<UpdatePromoModalProps> = ({
         }
 
         const response = await fetch(
-          `http://localhost:5000/api/update-promo/${promoDetails.promo_id}`,
+          `https://coffee-beer-cafe.onrender.com/api/update-promo/${promoDetails.promo_id}`,
           {
             method: "PATCH",
             body: formData, // Use FormData instead of JSON

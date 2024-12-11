@@ -9,7 +9,9 @@ const PromotionPage = () => {
   useEffect(() => {
     const fetchPromotions = async () => {
       try {
-        const promoRes = await fetch("http://localhost:5000/api/get-promos");
+        const promoRes = await fetch(
+          "https://coffee-beer-cafe.onrender.com/api/get-promos"
+        );
         const promoData = await promoRes.json();
         setPromotions(promoData);
         console.log(promoData);
