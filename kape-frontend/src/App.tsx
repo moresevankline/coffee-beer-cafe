@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import HomePage from "./pages/customer/HomePage";
 import LoginPage from "./pages/admin/LoginPage";
-import ManagerPage from "./pages/admin/ManagerPage";
 import ProductsPage from "./pages/admin/ProductsPage";
 import StorePage from "./pages/admin/StorePage";
 import OrderPage from "./pages/admin/OrderPage";
@@ -46,7 +45,6 @@ function App() {
                 {/* Manager Pages */}
                 <Route element={<ManagerDashboardPage />} path="/dashboard-manager" />
                 <Route element={<ManagerCategoriesPage />} path="/categories-manager" />
-                <Route element={<ManagerPage />} path="/managers" />
                 <Route element={<ManagerProductsPage />} path="/products-manager" />
                 <Route element={<ManagerOrderPage />} path="/orders-manager" />
 
