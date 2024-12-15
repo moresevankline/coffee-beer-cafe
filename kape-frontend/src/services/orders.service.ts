@@ -55,16 +55,16 @@ export const getPreviousMonthOrders = async () => {
 
 export const addOrder = async (orders: any) => {
   const token = getToken();
-
   console.log(orders, "asdasdasdas");
+
   try {
     const response = await fetch(`${SERVER_URI}/add/order`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", // Specify the content type
-        ...(token ? { jwt_token: token } : {}), // Conditionally add the token if it exists
+        "Content-Type": "application/json",
+        ...(token ? { jwt_token: token } : {}),
       },
-      body: JSON.stringify(orders), // Convert orders object to JSON string
+      body: JSON.stringify(orders),
     });
 
     if (!response.ok) {
@@ -73,10 +73,14 @@ export const addOrder = async (orders: any) => {
 
     const data = await response.json();
 
+    // Proceed to add order items after adding the main order
     await addOrderList(data.order_id, orders.orderlist);
+
+    // Return success status if everything goes well
+    return true;
   } catch (error) {
     console.error("Error adding order:", error);
-    throw error;
+    return false; // Return false in case of error
   }
 };
 

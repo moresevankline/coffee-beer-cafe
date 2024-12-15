@@ -16,7 +16,7 @@ const upload = multer({ storage: storage });
 
 router.get("/get/products", jwtAuthorize, async (req, res) => {
   try {
-    const query = `SELECT * FROM products INNER JOIN categories on categories.category_id = products.category_id`;
+    const query = `SELECT * FROM products INNER JOIN categories on categories.category_id = products.category_id ORDER BY product_id ASC`;
     const productswithcategories = await pool.query(query);
     return res.json(productswithcategories.rows);
   } catch (error) {

@@ -5,7 +5,7 @@ const jwtAuthorize = require("../middleware/jwt.validator");
 
 router.post("/add/order", jwtAuthorize, async (req, res) => {
   try {
-    const { order_date, order_time, order_type, transaction_number, total } =
+    const { order_date, order_time, order_type, transaction_number, store_id, total } =
       req.body; // Adjusted to total_amount
     const query = `
             INSERT INTO orders (order_date, order_time, order_type, transaction_number, store_id, total_amount)
@@ -19,7 +19,7 @@ router.post("/add/order", jwtAuthorize, async (req, res) => {
       order_time,
       order_type,
       transaction_number,
-      1,
+      store_id,
       total,
     ]);
 
