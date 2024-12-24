@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../components/view/Sidebar";
 import { createColumnHelper } from "@tanstack/react-table";
-import DataTable from "../../components/DataTable";
-import AddPromoModal from "../../components/AddPromoModal";
-import UpdatePromoModal from "../../components/UpdatePromoModal";
+import DataTable from "../../components/view/DataTable";
+import AddPromoModal from "../../components/create/AddPromoModal";
+import UpdatePromoModal from "../../components/update/UpdatePromoModal";
 import Swal from "sweetalert2";
 
 interface PromoBanner {

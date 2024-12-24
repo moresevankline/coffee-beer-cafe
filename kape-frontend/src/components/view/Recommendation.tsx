@@ -29,11 +29,20 @@ const Recommendation: React.FC<RecommendationProps> = ({  monthly_sale, total_sa
                 messages: [
                     {
                         role: "system",
-                        content: "You are a business analyst provides insights and recommendations in layman terms.",
+                        content: "You are a business analyst who provides insights and recommendations in layman terms.",
                     },
                     {
                         role: "user",
                         content: `
+                        This is the data for 2024
+                        
+                        Total Sales: ${total_sales}
+                        Monthly Sales: ${JSON.stringify(monthly_sale)}
+                        Sales based on store: ${JSON.stringify(store_sale)}
+                        Average sale per order: ${average_sale}
+                        Top 5 highest sale products: ${JSON.stringify(top_5_products)}
+                        Top 5 lowest sale products: ${JSON.stringify(low_5_products)}
+
                         Based on the following sales data (in Philippine Pesos), provide an analysis and recommendations. Don't compute the highest and lowest sales. The output should be in HTML format with Tailwind CSS styling, dont add greeting, following this pattern:
                 
                         "<div class='bg-gray-100 p-6 rounded-lg shadow-md'>
@@ -56,15 +65,6 @@ const Recommendation: React.FC<RecommendationProps> = ({  monthly_sale, total_sa
                                 <li>Recommendation 5</li>
                             </ul>
                         </div>"
-
-                        This is the data for 2024
-                        
-                        Total Sales: ${total_sales}
-                        Sales: ${JSON.stringify(monthly_sale)}
-                        Sales based on store: ${JSON.stringify(store_sale)}
-                        Average sale per order: ${average_sale}
-                        Top 5 highest sale products: ${JSON.stringify(top_5_products)}
-                        Top 5 lowest sale products: ${JSON.stringify(low_5_products)}
                         `,
                     },
                 ],

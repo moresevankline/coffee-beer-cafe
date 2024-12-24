@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
-import { addOrder } from "../services/orders.service";
-import { getProductsWithCategories } from "../services/products.service";
+import { addOrder } from "../../services/orders.service";
+import { getProductsWithCategories } from "../../services/products.service";
 import Swal from "sweetalert2";
 
 interface AddOrderModalProps {
@@ -50,6 +50,7 @@ const AddOrdersModal = ({
 
   const transformDataToOrderFormat = (rawData: any[]): any[] => {
     const ordersMap: { [key: string]: any } = {};
+    const store_id = localStorage.getItem("store_id");
 
     rawData.forEach((row: any) => {
       const transactionNumber = row["Transaction No."]; // Transaction reference
@@ -81,7 +82,7 @@ const AddOrdersModal = ({
           order_date: orderDate,
           order_time: orderTime, // Store the formatted time
           order_type: row["Order Type"],
-          store_id: row["Store ID"], // Add store_id if present
+          store_id: store_id, // Add store_id if present
           orderlist: [],
           total: 0, // Initialize total for each transaction
         };
@@ -94,13 +95,13 @@ const AddOrdersModal = ({
         product_id: products.find(
           (product: any) =>
             product.product_name === row["Product"] &&
-            product.store_id === row["Store ID"]
+            product.store_id === Number(store_id)
         )?.product_id,
         quantity: row["Quantity"],
         price: row["Price"],
         sub_total: row["Subtotal"],
       };
-      console.log("Products", products)
+      console.log("Products", products);
 
       // Add the item to the orderlist
       ordersMap[transactionNumber].orderlist.push(orderItem);
@@ -123,12 +124,12 @@ const AddOrdersModal = ({
         confirmButtonText: "Yes, upload!",
         cancelButtonText: "Cancel",
       });
-  
+
       if (result.isConfirmed) {
         const uploadSuccess = await Promise.all(
           orders.map((order: any) => addOrder(order)) // Wait for all orders to be added
         );
-  
+
         // If all orders were successfully uploaded
         if (uploadSuccess.every((success) => success)) {
           Swal.fire({
@@ -196,7 +197,6 @@ const AddOrdersModal = ({
                   <th>Quantity</th>
                   <th>Price</th>
                   <th>Subtotal</th>
-                  <th>Store ID</th>
                 </tr>
               </thead>
               <tbody>
@@ -212,7 +212,6 @@ const AddOrdersModal = ({
                       <td>{item.quantity}</td>
                       <td>{item.price}</td>
                       <td>{item.sub_total}</td>
-                      <td>{order.store_id}</td>
                     </tr>
                   ))
                 )}

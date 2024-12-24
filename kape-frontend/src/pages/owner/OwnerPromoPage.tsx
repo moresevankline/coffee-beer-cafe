@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../components/view/Sidebar";
 import { createColumnHelper } from "@tanstack/react-table";
-import DataTable from "../../components/DataTable";
+import DataTable from "../../components/view/DataTable";
 
 interface PromoBanner {
   promo_id: number;

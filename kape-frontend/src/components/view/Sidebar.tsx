@@ -9,7 +9,7 @@ import {
   faTag,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import logo from "../assets/logo/logo.png";
+import logo from "../../assets/logo/logo.png";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -116,7 +116,9 @@ const Sidebar = () => {
                 ].includes(item.path);
               }
               if (role === "admin") {
-                return ["/managers-admin", "/orders", "/stores", "/owners"].includes(item.path);
+                return ["/managers-admin", "/stores", "/owners"].includes(
+                  item.path
+                );
               }
               return !item.path.includes("/owners");
             })

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import DataTable from "../../components/DataTable";
-import Sidebar from "../../components/Sidebar";
+import DataTable from "../../components/view/DataTable";
+import Sidebar from "../../components/view/Sidebar";
 import { createColumnHelper } from "@tanstack/react-table";
 import { updateCategoryStatus } from "../../services/products.service";
 import { useNavigate } from "react-router-dom";
-import AddCategoryModal from "../../components/AddCategoryModal";
-import UpdateCategoryModal from "../../components/UpdateCategoryModal";
+import AddCategoryModal from "../../components/create/AddCategoryModal";
+import UpdateCategoryModal from "../../components/update/UpdateCategoryModal";
 import Swal from "sweetalert2";
 import { getCategoriesManager } from "../../services/manager.service";
 

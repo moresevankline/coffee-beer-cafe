@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../components/view/Sidebar";
 import {
   getAverageSales2024Manager,
   getMonthlySales2024Manager,
@@ -9,7 +9,7 @@ import {
   getTop5MostSaleProductsManager,
   getTotalSales2024Manager,
 } from "../../services/orders.service";
-import Recommendation from "../../components/Recommendation";
+import Recommendation from "../../components/view/Recommendation";
 import { authUser } from "../../services/auth.service";
 
 interface MonthlySales2024 {
@@ -34,21 +34,26 @@ interface Least5SaleProducts {
 
 const ManagerDashboardPage = () => {
   const navigate = useNavigate();
-  const [top5LeastSaleProducts, setLeastProducts] = useState<Least5SaleProducts[]>([]);
-  const [monthlySales2024, setMonthlySales2024] = useState<MonthlySales2024[]>([]);
+  const [top5LeastSaleProducts, setLeastProducts] = useState<
+    Least5SaleProducts[]
+  >([]);
+  const [monthlySales2024, setMonthlySales2024] = useState<MonthlySales2024[]>(
+    []
+  );
   const [storeSales2024, setStoreSales2024] = useState<StoreSales2024[]>([]);
-  const [totalSales, setTotalSales] = useState(0); 
+  const [totalSales, setTotalSales] = useState(0);
   const [averageSales, setAverageSales2024] = useState(0);
-  const [top5MostSaleProducts, setTop5MostSaleProducts] = useState<Top5MostSaleProducts[]>([]);
-
+  const [top5MostSaleProducts, setTop5MostSaleProducts] = useState<
+    Top5MostSaleProducts[]
+  >([]);
 
   useEffect(() => {
     const verifyUser = async () => {
-      const isVerified = await authUser(); 
+      const isVerified = await authUser();
       console.log(isVerified);
       if (!isVerified) {
-        navigate("/admin/login"); 
-      } 
+        navigate("/admin/login");
+      }
     };
 
     verifyUser();
@@ -59,23 +64,31 @@ const ManagerDashboardPage = () => {
   }, []);
 
   const fetchOrders = async () => {
-    {let store_id = localStorage.getItem("store_id") 
+    {
+      let store_id = localStorage.getItem("store_id");
 
-    const topLeastProductSales = await getTop5LeastSaleProductsManager(Number(store_id));
-    const topMostSaleProducts = await getTop5MostSaleProductsManager(Number(store_id));
-    const totalSales = await getTotalSales2024Manager(Number(store_id));
-    const monthlySales = await getMonthlySales2024Manager(Number(store_id));
-    const storeSales2024 = await getStoreSales2024Manager(Number(store_id));
-    const averageSales2024 = await getAverageSales2024Manager(Number(store_id));
-    const sales = totalSales;
+      const topLeastProductSales = await getTop5LeastSaleProductsManager(
+        Number(store_id)
+      );
+      const topMostSaleProducts = await getTop5MostSaleProductsManager(
+        Number(store_id)
+      );
+      const totalSales = await getTotalSales2024Manager(Number(store_id));
+      const monthlySales = await getMonthlySales2024Manager(Number(store_id));
+      const storeSales2024 = await getStoreSales2024Manager(Number(store_id));
+      const averageSales2024 = await getAverageSales2024Manager(
+        Number(store_id)
+      );
+      const sales = totalSales;
 
-    setLeastProducts(topLeastProductSales as Least5SaleProducts[])
-    setTop5MostSaleProducts(topMostSaleProducts as Top5MostSaleProducts[])
-    setMonthlySales2024(monthlySales as MonthlySales2024[]);
-    setStoreSales2024(storeSales2024 as StoreSales2024[]);
-    setTotalSales(sales[0].sum);
-    setAverageSales2024(averageSales2024[0].avg)}
-  }
+      setLeastProducts(topLeastProductSales as Least5SaleProducts[]);
+      setTop5MostSaleProducts(topMostSaleProducts as Top5MostSaleProducts[]);
+      setMonthlySales2024(monthlySales as MonthlySales2024[]);
+      setStoreSales2024(storeSales2024 as StoreSales2024[]);
+      setTotalSales(sales[0].sum);
+      setAverageSales2024(averageSales2024[0].avg);
+    }
+  };
 
   return (
     <section className="dashboard flex h-screen">

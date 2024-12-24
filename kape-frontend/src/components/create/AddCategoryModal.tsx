@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { addCategoryManager } from "../services/manager.service";
+import { addCategoryManager } from "../../services/manager.service";
 const store_id = localStorage.getItem("store_id");
 
 interface AddCategoryModalProps {

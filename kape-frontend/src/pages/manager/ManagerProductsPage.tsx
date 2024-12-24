@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import DataTable from "../../components/DataTable";
-import Sidebar from "../../components/Sidebar";
+import DataTable from "../../components/view/DataTable";
+import Sidebar from "../../components/view/Sidebar";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useNavigate } from "react-router-dom";
-import AddProductModal from "../../components/AddProductModal";
-import UpdateProductModal from "../../components/UpdateProductModal";
+import AddProductModal from "../../components/create/AddProductModal";
+import UpdateProductModal from "../../components/update/UpdateProductModal";
 import {
   getCategoriesManager,
   getProductsWithCategoriesManager,

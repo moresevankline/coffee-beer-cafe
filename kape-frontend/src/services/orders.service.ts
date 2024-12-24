@@ -568,3 +568,75 @@ export const getTop5LeastSaleProductsManager = async (store_id: number) => {
     throw error;
   }
 };
+
+export const addOrderManager = async (orders: any) => {
+  const token = getToken();
+  console.log(orders, "asdasdasdas");
+
+  try {
+    const response = await fetch(`${SERVER_URI}/add/order`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token ? { jwt_token: token } : {}),
+      },
+      body: JSON.stringify(orders),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status} - ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    // Proceed to add order items after adding the main order
+    await addOrderListManager(data.order_id, orders.orderlist);
+
+    // Return success status if everything goes well
+    return true;
+  } catch (error) {
+    console.error("Error adding order:", error);
+    return false; // Return false in case of error
+  }
+};
+
+const addOrderListManager = async (order_id: any, order_list: any) => {
+  const token = getToken();
+
+  try {
+    // Combine order_id with each item in the order_list
+    const formattedOrderList = order_list.map((item: any) => ({
+      ...item, // Spread the existing properties of the item
+      order_id, // Add the order_id to each item
+    }));
+
+    console.log(order_list, "Asdasd");
+
+    // Use Promise.all to send all fetch requests
+    const responses = await Promise.all(
+      formattedOrderList.map(async (orderItem: any) => {
+        const response = await fetch(`${SERVER_URI}/add/order-list`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            ...(token ? { jwt_token: token } : {}),
+          },
+          body: JSON.stringify(orderItem), // Send each item individually
+        });
+
+        // Check if the response is ok
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
+        return await response.json(); // Return the parsed response data
+      })
+    );
+
+    // Here you can return all the responses or process them further
+    return responses; // Return all response data from the requests
+  } catch (error) {
+    console.error("Error adding order:", error);
+    throw error;
+  }
+};

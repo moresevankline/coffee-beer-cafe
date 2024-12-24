@@ -3,7 +3,6 @@ import HomePage from "./pages/customer/HomePage";
 import LoginPage from "./pages/admin/LoginPage";
 import ProductsPage from "./pages/admin/ProductsPage";
 import StorePage from "./pages/admin/StorePage";
-import OrderPage from "./pages/admin/OrderPage";
 import PromoPage from "./pages/admin/PromoPage";
 import MenuPage from "./pages/customer/MenuPage";
 import PromotionPage from "./pages/customer/PromotionPage";
@@ -53,7 +52,6 @@ function App() {
                 <Route element={<AdminManagerPage />} path="/managers-admin" />
                 <Route element={<ProductsPage />} path="/products" />
                 <Route element={<StorePage />} path="/stores" />
-                <Route element={<OrderPage />} path="/orders" />
                 <Route element={<LoginPage />} path="/admin/login" />
                 <Route element={<PromoPage />} path="/promos" />
                 <Route element={<PromotionPage />} path="/promotions" />

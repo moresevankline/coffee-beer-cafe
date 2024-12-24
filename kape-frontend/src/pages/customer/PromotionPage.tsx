@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Navbar from "../../components/Navbar";
+import Navbar from "../../components/view/Navbar";
 import { Carousel } from "flowbite-react";
-import Footer from "../../components/Footer";
+import Footer from "../../components/view/Footer";
 
 const PromotionPage = () => {
   const [promotions, setPromotions] = useState<any[]>([]);

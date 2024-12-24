@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import DataTable from "../../components/DataTable";
-import Sidebar from "../../components/Sidebar";
+import DataTable from "../../components/view/DataTable";
+import Sidebar from "../../components/view/Sidebar";
 import { createColumnHelper } from "@tanstack/react-table";
 import { getStoreLocations } from "../../services/stores.service";
 import { useNavigate } from "react-router-dom";

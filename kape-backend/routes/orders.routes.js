@@ -47,6 +47,11 @@ router.post("/add/order-list", jwtAuthorize, async (req, res) => {
       sub_total,
     ]);
 
+    await pool.query('REFRESH MATERIALIZED VIEW owner_data;');
+    await pool.query('REFRESH MATERIALIZED VIEW manager_data_batangas;');
+    await pool.query('REFRESH MATERIALIZED VIEW manager_data_tiaong;');
+    await pool.query('REFRESH MATERIALIZED VIEW manager_data_carmona;');
+    await pool.query('REFRESH MATERIALIZED VIEW manager_data_one_ayala;');
     return res.json(newOrder.rows[0]);
   } catch (error) {
     console.error("Error adding order:", error);

@@ -32,7 +32,7 @@ const AddPromoModal = ({
       if (showAddPromoModal) {
         modal.showModal();
       } else {
-        resetForm(); // Reset fields before closing
+        resetForm();
         modal.close();
       }
     }
